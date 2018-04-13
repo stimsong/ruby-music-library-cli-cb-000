@@ -1,0 +1,50 @@
+class Artist
+ attr_accessor :name
+
+  @@all = []
+
+  def initialize(name)
+    @name = name
+    @songs = []
+  end
+
+  def save
+    @@all << self
+  end
+
+  def songs
+      @songs
+  end
+
+  def add_song(song)
+    if song_exist?(song) != true
+      @songs << song
+    end
+    if song.artist == nil
+      song.artist = self
+    end
+  end
+
+  def song_exist?(song)
+    if @songs.find { |song_name| song_name == song }
+      true
+    else
+      false
+    end
+  end
+
+  def self.all
+    @@all
+  end
+
+  def self.destroy_all
+    @@all.clear
+  end
+
+  def self.create(name)
+    new_artist = self.new(name)
+    new_artist.save
+    new_artist
+  end
+
+end
