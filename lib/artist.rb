@@ -1,5 +1,8 @@
 class Artist
- attr_accessor :name
+  attr_accessor :name
+  attr_reader :songs
+
+  extend Concerns::Findable
 
   @@all = []
 
@@ -21,12 +24,17 @@ class Artist
   end
 
   def add_song(song)
-    if song_exist?(song) != true
-      @songs << song
-    end
-    if song.artist == nil
-      song.artist = self
-    end
+    #####  FLATIRON  #####
+    song.artist = self unless song.artist
+    songs << song unless songs.include?(song)
+
+    #####  MINE  #####
+    # if song_exist?(song) != true
+    #   @songs << song
+    # end
+    # if song.artist == nil
+    #   song.artist = self
+    # end
   end
 
   def song_exist?(song)
