@@ -5,6 +5,25 @@ class Genre
 
   def initialize(name)
     @name = name
+    @songs = []
+  end
+
+  def add_song(song)
+    if song_exist?(song) != true
+      @songs << song
+    end
+  end
+
+  def song_exist?(song)
+    if @songs.find { |song_name| song_name == song }
+      true
+    else
+      false
+    end
+  end
+
+  def artists
+    self.songs.collect {|song| song.artist}.uniq
   end
 
   def self.all
@@ -17,6 +36,10 @@ class Genre
 
   def save
     @@all << self
+  end
+
+  def songs
+    @songs
   end
 
   def self.create(name)

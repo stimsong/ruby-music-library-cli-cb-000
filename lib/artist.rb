@@ -16,6 +16,10 @@ class Artist
       @songs
   end
 
+  def genres
+    self.songs.collect {|song| song.genre}.uniq
+  end
+
   def add_song(song)
     if song_exist?(song) != true
       @songs << song
