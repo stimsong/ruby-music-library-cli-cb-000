@@ -72,7 +72,7 @@ class MusicLibraryController
     end
 
     if song
-      puts "Playing #{song.name} by #{song.artist}"
+      puts "Playing #{song.name} by #{song.artist.name}"
     end
   end
 
